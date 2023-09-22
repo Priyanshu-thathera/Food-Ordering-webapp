@@ -10,7 +10,7 @@ const dotenv = require("dotenv").config();
 
 const app = express();
 app.use(cookieParser());
-app.use(cors({origin:"https://priyanshu-food-service.netlify.app/" , credentials:true}));
+app.use(cors({origin:"https://priyanshu-food-service.netlify.app" , credentials:true}));
 
 app.use(express.json({ limit: "10mb" })); // take data upto 10mb
 
