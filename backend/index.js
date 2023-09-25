@@ -99,6 +99,13 @@ app.post("/loginWithCookies", function (req, res) {
   })
 })
 
+///////// logout /////
+app.post("/logout",function(req,res){
+  const cookieName = req.body.cookieName;
+  res.clearCookie(cookieName, { httpOnly: true });
+  res.json({ message: "Logout successfully", alert: true });
+})
+
 app.post("/uploadProduct", async (req, res) => {
   const data = await productModel(req.body);
   const ds = await data.save();
