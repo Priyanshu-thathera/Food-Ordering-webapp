@@ -18,10 +18,19 @@ const Header = () => {
   const handleShowMenu = () => {
     setShowMenu((preve) => !preve);
   };
-  const handleLogout = () => {
+
+  const handleLogout = (e) => {
+    e.preventDefault();
     dispatch(logoutRedux());
-     toast("Logout successfully");
-    
+    axios
+      .post(`${process.env.REACT_APP_SERVER_DOMAIN}/logout`,{ cookieName: 'loginToken' },
+      {
+        withCredentials: true,
+      })
+      .then((res) => {
+        toast(res.data.message);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
