@@ -68,7 +68,14 @@ app.post("/login", function (req, res) {
             image: user.image,
           };
           const token = jwt.sign({ email: user.email },process.env.JWT_KEY);
-          res.cookie("loginToken", token);
+          
+          res.cookie("loginToken", token {
+          httpOnly: true,
+          maxAge: 3600000 * 5, // This sets the cookie to expire in 5 hours
+          secure: true, // Requires HTTPS to send the cookie
+          sameSite: 'none', // Allow cross-origin requests
+        });
+          
           res.json({ message: "Login success", alert: true, data: dataSend});
         } else {
           res.json({ message: "Wrong email or password", alert: false });
