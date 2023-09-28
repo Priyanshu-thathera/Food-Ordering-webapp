@@ -69,7 +69,7 @@ app.post("/login", function (req, res) {
           };
           const token = jwt.sign({ email: user.email },process.env.JWT_KEY);
           
-          res.cookie("loginToken", token {
+          res.cookie("loginToken", token, {
           httpOnly: true,
           maxAge: 3600000 * 5, // This sets the cookie to expire in 5 hours
           secure: true, // Requires HTTPS to send the cookie
